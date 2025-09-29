@@ -1,11 +1,13 @@
+import CustomButton from "@/components/CustomButton";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, StyleSheet, Text } from "react-native";
 
 const Home = () => {
   return (
-    <View>
+    <SafeAreaView>
       <Text>Home</Text>
-    </View>
+      <CustomButton label="버튼" size="medium" onPress={() => {}} />
+    </SafeAreaView>
   );
 };
 
