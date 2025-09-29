@@ -16,13 +16,20 @@ const AuthLayout = () => {
       <Stack.Screen
         name="index"
         options={{
-          title: "내 프로필",
+          title: "로그인",
           headerShown: true,
           headerLeft: () => (
-            <Link href={"/"} replace>
+            <Link href={"/"} replace style={{ paddingRight: 5 }}>
               <Foundation name="home" size={28} color={"black"} />
             </Link>
           ),
+        }}
+      />
+      <Stack.Screen
+        name="login"
+        options={{
+          title: "이메일 로그인",
+          headerShown: true,
         }}
       />
     </Stack>

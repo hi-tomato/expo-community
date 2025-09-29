@@ -1,7 +1,8 @@
 import CustomButton from "@/components/CustomButton";
 import { router } from "expo-router";
 import React from "react";
-import { SafeAreaView, StyleSheet, Text } from "react-native";
+import { StyleSheet, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Home = () => {
   return (
