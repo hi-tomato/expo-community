@@ -1,14 +1,14 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-const ExploreScreen = () => {
+const MyScreen = () => {
   return (
     <View>
-      <Text>ExploreScreen</Text>
+      <Text>MyScreen</Text>
     </View>
   );
 };
 
-export default ExploreScreen;
+export default MyScreen;
 
 const styles = StyleSheet.create({});
