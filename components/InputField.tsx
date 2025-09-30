@@ -31,9 +31,7 @@ const InputField = ({
       >
         <TextInput style={[styles.input]} {...props} />
       </View>
-      {Boolean(error) && (
-        <Text style={styles.errorMessage}>내용을 입력해주세요.</Text>
-      )}
+      {Boolean(error) && <Text style={styles.errorMessage}>{error}</Text>}
     </View>
   );
 };
