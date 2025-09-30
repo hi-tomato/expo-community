@@ -1,11 +1,17 @@
+import AuthRoute from "@/components/AuthRoute";
+import { useAuth } from "@/hooks/queries/useAuth";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const SettingScreen = () => {
+  const { logout } = useAuth();
   return (
-    <View>
-      <Text>SettingScreen</Text>
-    </View>
+    <AuthRoute>
+      <SafeAreaView>
+        <Text onPress={logout}>로그아웃</Text>
+      </SafeAreaView>
+    </AuthRoute>
   );
 };
 
