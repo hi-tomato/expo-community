@@ -21,6 +21,7 @@ const Profile = ({
     <View style={styles.container}>
       <Pressable style={styles.profileContainer} onPress={onPress}>
         <Image
+          style={styles.avatar}
           source={
             imageUri
               ? { uri: imageUri }

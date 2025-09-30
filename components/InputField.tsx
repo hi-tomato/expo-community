@@ -11,18 +11,29 @@ import {
 interface InputFieldProps extends TextInputProps {
   label?: string;
   variant?: "filled" | "standard" | "outlined";
+  error?: string;
 }
 const InputField = ({
   label,
   variant = "filled",
+  error = "",
   ...props
 }: InputFieldProps) => {
   return (
     <View>
       <View>{label && <Text style={styles.label}>{label}</Text>}</View>
-      <View style={[styles.container, styles[variant]]}>
-        <TextInput style={styles.input} {...props} />
+      <View
+        style={[
+          styles.container,
+          styles[variant],
+          Boolean(error) && styles.inputError,
+        ]}
+      >
+        <TextInput style={[styles.input]} {...props} />
       </View>
+      {Boolean(error) && (
+        <Text style={styles.errorMessage}>내용을 입력해주세요.</Text>
+      )}
     </View>
   );
 };
@@ -52,5 +63,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     padding: 0,
     flex: 1,
+  },
+  errorMessage: {
+    color: colors.RED_500,
+    fontSize: 12,
+    marginTop: 5,
+  },
+  inputError: {
+    backgroundColor: colors.RED_100,
   },
 });

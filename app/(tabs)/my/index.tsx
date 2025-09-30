@@ -1,11 +1,16 @@
+import { router, useFocusEffect } from "expo-router";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const MyScreen = () => {
+  useFocusEffect(() => {
+    router.replace("/auth");
+  });
   return (
-    <View>
+    <SafeAreaView>
       <Text>MyScreen</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 
