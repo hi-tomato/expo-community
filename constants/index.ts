@@ -12,4 +12,11 @@ const colors = {
   RED_500: "#FF5F5F",
 };
 
+export const queryKeys = {
+  AUTH: "auth",
+  GET_ME: "getMe",
+  POST: "post",
+  GET_POSTS: "getPosts",
+};
+
 export default colors;

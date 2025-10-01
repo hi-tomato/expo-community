@@ -1,57 +1,48 @@
 import colors from "@/constants";
-import React from "react";
+import { useGetInfinityPost } from "@/hooks/queries/useGetInfinityPost";
+import { useScrollToTop } from "@react-navigation/native";
+import React, { useRef, useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import FeedItem from "./FeedItem";
 
-const dummyData = [
-  {
-    id: 1,
-    userId: 1,
-    title: "더미 제목입니다.",
-    description:
-      "더미 내용입니다. 더미 내용입니다. 더미 내용입니다. 더미 내용입니다. 더미 내용입니다. 더미 내용입니다. 더미 내용입니다.  더미 내용입니다.더미 내용입니다.  더미 내용입니다. 더미 내용입니다.",
-    createdAt: "2025-09-30",
-    author: {
-      id: 1,
-      nickname: "닉네임",
-      imageUri: "",
-    },
-    imageUris: [],
-    likes: [],
-    hasVote: false,
-    voteCount: 1,
-    commentCount: 1,
-    viewCount: 1,
-  },
-  {
-    id: 2,
-    userId: 2,
-    title: "더미 제목입니다.",
-    description:
-      "더미 내용입니다. 더미 내용입니다. 더미 내용입니다. 더미 내용입니다. 더미 내용입니다. 더미 내용입니다. 더미 내용입니다.  더미 내용입니다.더미 내용입니다.  더미 내용입니다. 더미 내용입니다.",
-    createdAt: "2025-09-30",
-    author: {
-      id: 1,
-      nickname: "닉네임",
-      imageUri: "",
-    },
-    imageUris: [],
-    likes: [],
-    hasVote: false,
-    voteCount: 1,
-    commentCount: 1,
-    viewCount: 1,
-  },
-];
-
 const FeedList = () => {
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const ref = useRef<FlatList | null>(null);
+
+  useScrollToTop(ref);
+
+  const {
+    data: posts,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    refetch,
+  } = useGetInfinityPost();
+
+  const handleEndReached = () => {
+    if (hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  };
+
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    await refetch();
+    setIsRefreshing(false);
+  };
+
   return (
     <View>
       <FlatList
-        data={dummyData}
+        ref={ref}
+        data={posts?.pages.flat()}
         keyExtractor={(item) => String(item.id)}
         renderItem={({ item }) => <FeedItem post={item} />}
         contentContainerStyle={styles.contentContainer}
+        onEndReached={handleEndReached}
+        onEndReachedThreshold={0.5}
+        refreshing={isRefreshing}
+        onRefresh={handleRefresh}
       />
     </View>
   );
