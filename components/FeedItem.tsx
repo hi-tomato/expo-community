@@ -33,7 +33,12 @@ function FeedItem({ post, isDetail = false }: FeedItemProps) {
         switch (index) {
           // 0: 삭제 / 1: 수정 / 2: 취소
           case destructiveButtonIndex:
-            deletePost.mutate(post.id);
+            deletePost.mutate(post.id, {
+              onSuccess: () => {
+                isDetail && router.back();
+              },
+            });
+
             break;
           case 1:
             router.push(`/post/update/${post.id}`);
