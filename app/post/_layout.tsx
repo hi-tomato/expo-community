@@ -26,6 +26,18 @@ const PostWriteLayout = () => {
           ),
         }}
       />
+      <Stack.Screen
+        name="update/[id]"
+        options={{
+          title: "수정",
+          headerShown: true,
+          headerLeft: () => (
+            <Link replace href={"/"} style={{ paddingRight: 5 }}>
+              <Feather name="arrow-left" size={28} color={"black"} />
+            </Link>
+          ),
+        }}
+      />
     </Stack>
   );
 };

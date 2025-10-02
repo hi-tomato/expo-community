@@ -12,3 +12,27 @@ export const getPost = async (page = 1): Promise<Post[]> => {
 
   return data;
 };
+
+export const deletePost = async (id: number): Promise<number> => {
+  const { data } = await axiosInstance.delete(`/posts/${id}`);
+
+  return data;
+};
+
+export const updatePost = async ({
+  id,
+  body,
+}: {
+  id: number;
+  body: CreatePostDto;
+}): Promise<number> => {
+  const { data } = await axiosInstance.patch(`/posts/${id}`, body);
+
+  return data;
+};
+
+export const getPostById = async (id: number): Promise<Post> => {
+  const { data } = await axiosInstance.get(`/posts/${id}`);
+
+  return data;
+};
