@@ -1,8 +1,8 @@
 import colors from "@/constants";
 import { Feather } from "@expo/vector-icons";
-import { Link, Stack } from "expo-router";
+import { Link, router, Stack } from "expo-router";
 import React from "react";
-import { StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 
 const PostWriteLayout = () => {
   return (
@@ -35,6 +35,23 @@ const PostWriteLayout = () => {
             <Link replace href={"/"} style={{ paddingRight: 5 }}>
               <Feather name="arrow-left" size={28} color={"black"} />
             </Link>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="[id]"
+        options={{
+          headerShown: true,
+          headerTitle: "",
+          headerLeft: () => (
+            <Pressable
+              onPress={() =>
+                router.canGoBack() ? router.back() : router.replace("/")
+              }
+              style={{ paddingRight: 5 }}
+            >
+              <Feather name="arrow-left" size={28} color={"black"} />
+            </Pressable>
           ),
         }}
       />
