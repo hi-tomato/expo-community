@@ -13,6 +13,18 @@ export const getPost = async (page = 1): Promise<Post[]> => {
   return data;
 };
 
+export const getMyPost = async (page = 1): Promise<Post[]> => {
+  const { data } = await axiosInstance.get(`/posts/my?page=${page}`);
+
+  return data;
+};
+
+export const getLikedPost = async (page = 1): Promise<Post[]> => {
+  const { data } = await axiosInstance.get(`/posts/likes?page=${page}`);
+
+  return data;
+};
+
 export const deletePost = async (id: number): Promise<number> => {
   const { data } = await axiosInstance.delete(`/posts/${id}`);
 
