@@ -1,4 +1,4 @@
-import { getMe, postLogin, postSignup } from "@/api/auth";
+import { editProfile, getMe, postLogin, postSignup } from "@/api/auth";
 import queryClient from "@/api/queryCleint";
 import { queryKeys } from "@/constants";
 import { removeHeaders, setHeaders } from "@/utils/header";
@@ -51,6 +51,15 @@ export const useLogin = () => {
   });
 };
 
+export const useUpdateProfile = () => {
+  return useMutation({
+    mutationFn: editProfile,
+    onSuccess: (newProfile) => {
+      queryClient.setQueryData([queryKeys.AUTH, queryKeys.GET_ME], newProfile);
+    },
+  });
+};
+
 export const useSignUp = () => {
   return useMutation({
     mutationFn: postSignup,
@@ -65,6 +74,7 @@ export const useAuth = () => {
   const { data } = useGetMe();
   const loginMutation = useLogin();
   const signupMutation = useSignUp();
+  const profileMutation = useUpdateProfile();
 
   const logout = () => {
     removeHeaders("Authorization");
@@ -82,5 +92,6 @@ export const useAuth = () => {
     loginMutation,
     signupMutation,
     logout,
+    profileMutation,
   };
 };

@@ -24,7 +24,7 @@ const ProfileScreen = () => {
     });
   }, [navigation]);
 
-  if (Number(userId) === Number(auth.id)) {
+  if (auth.id && Number(userId) === Number(auth.id)) {
     return <Redirect href="/my" />;
   }
 
