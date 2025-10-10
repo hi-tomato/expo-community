@@ -12,10 +12,7 @@ import React, { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { StyleSheet } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 type FormValues = {
   title: string;
@@ -65,19 +62,15 @@ const PostWriteScreen = () => {
 
   return (
     <FormProvider {...postForm}>
-      <SafeAreaView>
-        <KeyboardAwareScrollView
-          contentContainerStyle={[styles.container, { paddingTop: insets.top }]}
-        >
-          <TitleInput />
-          <DescriptionInput />
-          <VoteAttached />
-        </KeyboardAwareScrollView>
-        <PostWriteFooter />
-
+      <KeyboardAwareScrollView contentContainerStyle={[styles.container]}>
+        <TitleInput />
+        <DescriptionInput />
+        <VoteAttached />
         <ImagePreviewList imageUris={postForm.watch().imageUris} />
-        <VoteModal />
-      </SafeAreaView>
+      </KeyboardAwareScrollView>
+
+      <PostWriteFooter />
+      <VoteModal />
     </FormProvider>
   );
 };
