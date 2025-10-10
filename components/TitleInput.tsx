@@ -19,7 +19,9 @@ const TitleInput = () => {
         <InputField
           autoFocus
           label="제목"
+          placeholder="제목을 입력해주세요."
           value={value}
+          returnKeyType="next"
           onChangeText={(t) => onChange(t, "title")}
           onSubmitEditing={() => setFocus("description")}
           error={error?.message}

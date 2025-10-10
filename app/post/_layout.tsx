@@ -20,7 +20,7 @@ const PostWriteLayout = () => {
           title: "글쓰기",
           headerShown: true,
           headerLeft: () => (
-            <Link replace href={"/"} style={{ paddingRight: 5 }}>
+            <Link replace href={"/"}>
               <Feather name="arrow-left" size={28} color={"black"} />
             </Link>
           ),
@@ -29,12 +29,12 @@ const PostWriteLayout = () => {
       <Stack.Screen
         name="update/[id]"
         options={{
-          title: "수정",
+          title: "",
           headerShown: true,
           headerLeft: () => (
-            <Link replace href={"/"} style={{ paddingRight: 5 }}>
+            <Pressable onPress={() => router.back()}>
               <Feather name="arrow-left" size={28} color={"black"} />
-            </Link>
+            </Pressable>
           ),
         }}
       />

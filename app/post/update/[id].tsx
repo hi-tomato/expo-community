@@ -1,6 +1,7 @@
 import CustomButton from "@/components/CustomButton";
 import DescriptionInput from "@/components/DescriptionInput";
 import TitleInput from "@/components/TitleInput";
+import VoteAttached from "@/components/VoteAttached";
 import { useGetPostById } from "@/hooks/queries/useGetPostById";
 import { useUpdatePost } from "@/hooks/queries/useUpdatePost";
 import { ImageUri } from "@/types";
@@ -9,15 +10,18 @@ import React, { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { StyleSheet } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 type FormValues = {
   title: string;
   description: string;
   imageUris: ImageUri[];
+  isVoteAttached: boolean;
 };
 
 const UpdatePostScreen = () => {
   const { id } = useLocalSearchParams();
+  const inset = useSafeAreaInsets();
   const { data: post } = useGetPostById(Number(id));
   const updatePost = useUpdatePost();
 
@@ -27,6 +31,7 @@ const UpdatePostScreen = () => {
       title: post?.title,
       description: post?.description,
       imageUris: post?.imageUris,
+      isVoteAttached: post?.hasVote,
     },
   });
 
@@ -56,9 +61,10 @@ const UpdatePostScreen = () => {
 
   return (
     <FormProvider {...postForm}>
-      <KeyboardAwareScrollView contentContainerStyle={styles.container}>
+      <KeyboardAwareScrollView contentContainerStyle={[styles.container]}>
         <TitleInput />
         <DescriptionInput />
+        <VoteAttached />
       </KeyboardAwareScrollView>
     </FormProvider>
   );
