@@ -6,6 +6,7 @@ import { Comment } from "@/types";
 import { useActionSheet } from "@expo/react-native-action-sheet";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Text } from "@react-navigation/elements";
+import { router } from "expo-router";
 import React from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import InputField from "./InputField";
@@ -78,7 +79,11 @@ const CommentItem = ({
           />
         )}
         <Profile
-          onPress={() => {}}
+          onPress={() => {
+            if (!comment.isDeleted) {
+              router.push(`/profile/${comment.user.id}`);
+            }
+          }}
           nickName={comment.isDeleted ? "(삭제됨)" : comment.user.nickname}
           createdAt={comment.createdAt}
           imageUri={comment.isDeleted ? "" : comment.user.imageUri}

@@ -19,6 +19,17 @@ export const getMyPost = async (page = 1): Promise<Post[]> => {
   return data;
 };
 
+export const getUserPost = async (
+  userId: number,
+  page = 1
+): Promise<Post[]> => {
+  const { data } = await axiosInstance.get(
+    `/posts/user/${userId}?page=${page}`
+  );
+
+  return data;
+};
+
 export const getLikedPost = async (page = 1): Promise<Post[]> => {
   const { data } = await axiosInstance.get(`/posts/likes?page=${page}`);
 
