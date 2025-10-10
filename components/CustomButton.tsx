@@ -19,11 +19,12 @@ const CustomButton = ({
         styles.container,
         styles[size],
         styles[variant],
+        props.disabled && styles.disabled,
         pressed && styles.pressed,
       ]}
       {...props}
     >
-      <Text style={styles[variant]}>{label}</Text>
+      <Text style={styles[`${variant}Text`]}>{label}</Text>
     </Pressable>
   );
 };
@@ -53,9 +54,18 @@ const styles = StyleSheet.create({
   pressed: {
     opacity: 0.8,
   },
-  standard: {
+  standard: {},
+  disabled: {
+    backgroundColor: colors.GRAY_300,
+  },
+  standardText: {
     fontSize: 14,
     fontWeight: "bold",
     color: colors.ORANGE_600,
+  },
+  filledText: {
+    fontSize: 14,
+    fontWeight: "bold",
+    color: colors.WHITE,
   },
 });

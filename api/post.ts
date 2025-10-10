@@ -1,4 +1,4 @@
-import { CreatePostDto, Post } from "@/types";
+import { CreatePostDto, CreateVoteDto, Post, VoteOption } from "@/types";
 import axiosInstance from "./axios";
 
 export const createPost = async (body: CreatePostDto) => {
@@ -34,5 +34,15 @@ export const updatePost = async ({
 export const getPostById = async (id: number): Promise<Post> => {
   const { data } = await axiosInstance.get(`/posts/${id}`);
 
+  return data;
+};
+
+export const createVote = async ({
+  postId,
+  voteOptionId,
+}: CreateVoteDto): Promise<{ postId: number; voteOption: VoteOption }> => {
+  const { data } = await axiosInstance.post(
+    `/posts/${postId}/vote/${voteOptionId}`
+  );
   return data;
 };
