@@ -2,6 +2,7 @@ import queryClient from "@/api/queryCleint";
 import { useAuth } from "@/hooks/queries/useAuth";
 import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 import { QueryClientProvider } from "@tanstack/react-query";
+import * as Notifications from "expo-notifications";
 import { Stack } from "expo-router";
 import { useEffect } from "react";
 import "react-native-reanimated";
@@ -9,6 +10,15 @@ import Toast from "react-native-toast-message";
 export const unstable_settings = {
   anchor: "(tabs)",
 };
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+    shouldShowBanner: true,
+    shouldShowList: true,
+  }),
+});
 
 export default function RootLayout() {
   return (
