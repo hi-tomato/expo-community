@@ -40,6 +40,19 @@ const ProfileLayout = () => {
           ),
         }}
       />
+      <Stack.Screen
+        name="avatar"
+        options={{
+          headerShadowVisible: false,
+          headerShown: true,
+          headerTitle: "",
+          headerLeft: () => (
+            <Pressable onPress={() => router.back()}>
+              <Feather name="arrow-left" size={28} color={"black"} />
+            </Pressable>
+          ),
+        }}
+      />
     </Stack>
   );
 };

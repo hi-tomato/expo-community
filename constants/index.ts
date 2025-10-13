@@ -25,6 +25,13 @@ export const queryKeys = {
   GET_MY_POSTS: "getMyPosts",
   GET_POST_BY_ID: "getPostById",
   GET_USER_PROFILE: "getUserProfile",
+  AVATAR: "avatar",
+  // HATS: "hats",
+  // FACES: "faces",
+  // TOPS: "tops",
+  // BOTTOMS: "bottoms",
+  // HANDS: "hands",
+  // SKINS: "skins",
 };
 
 export default colors;
