@@ -1,9 +1,17 @@
+import { baseUrls } from "@/api/axios";
 import colors from "@/constants";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 import relativeTime from "dayjs/plugin/relativeTime";
 import React, { ReactNode } from "react";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 dayjs.extend(relativeTime);
 dayjs.locale("ko");
 interface ProfileProps {
@@ -28,7 +36,13 @@ const Profile = ({
           style={styles.avatar}
           source={
             imageUri
-              ? { uri: imageUri }
+              ? {
+                  uri: `${
+                    Platform.OS === baseUrls.ios
+                      ? baseUrls.ios
+                      : baseUrls.android
+                  }/${imageUri}`,
+                }
               : require("@/assets/images/default-avatar.png")
           }
         />

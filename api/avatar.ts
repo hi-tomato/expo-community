@@ -13,7 +13,7 @@ export const getFaces = async (): Promise<string[]> => {
 };
 
 export const getTops = async (): Promise<string[]> => {
-  const { data } = await axiosInstance.get("/avatar/hair");
+  const { data } = await axiosInstance.get("/avatar/tops");
 
   return data;
 };
